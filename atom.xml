@@ -4,9 +4,9 @@
   <subtitle>André Luan Chiquetto</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://http://brutto-avt.github.io/"/>
+  <link href="http://brutto-avt.github.io/"/>
   <updated>2016-07-04T22:47:20.815Z</updated>
-  <id>http://http://brutto-avt.github.io/</id>
+  <id>http://brutto-avt.github.io/</id>
   
   <author>
     <name>Brutto-AVT</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Debugando Node via console</title>
-    <link href="http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/"/>
-    <id>http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/</id>
+    <link href="http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/"/>
+    <id>http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/</id>
     <published>2016-07-04T22:40:07.000Z</published>
     <updated>2016-07-04T22:47:20.815Z</updated>
     
@@ -62,14 +62,14 @@
     </summary>
     
     
-      <category term="node" scheme="http://http://brutto-avt.github.io/tags/node/"/>
+      <category term="node" scheme="http://brutto-avt.github.io/tags/node/"/>
     
   </entry>
   
   <entry>
     <title>Dica útil do dia - Filtro slice</title>
-    <link href="http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/"/>
-    <id>http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/</id>
+    <link href="http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/"/>
+    <id>http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/</id>
     <published>2016-07-04T22:01:48.000Z</published>
     <updated>2016-07-04T22:08:47.580Z</updated>
     
@@ -91,7 +91,7 @@
     </summary>
     
     
-      <category term="angular" scheme="http://http://brutto-avt.github.io/tags/angular/"/>
+      <category term="angular" scheme="http://brutto-avt.github.io/tags/angular/"/>
     
   </entry>
   
