@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Brutto-AVT</title>
+  <subtitle>André Luan Chiquetto</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://http://brutto-avt.github.io/"/>
+  <updated>2016-07-04T22:08:47.580Z</updated>
+  <id>http://http://brutto-avt.github.io/</id>
+  
+  <author>
+    <name>Brutto-AVT</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dica útil do dia - Filtro slice</title>
+    <link href="http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/"/>
+    <id>http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/</id>
+    <published>2016-07-04T22:01:48.000Z</published>
+    <updated>2016-07-04T22:08:47.580Z</updated>
+    
+    <content type="html">&lt;p&gt;Quando estou desenvolvendo em JS às vezes sinto falta do Python e seus operadores malandros, do tipo:&lt;/p&gt;
+&lt;figure class=&quot;highlight prolog&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;meuArray = [&lt;span class=&quot;string&quot;&gt;&#39;a&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;b&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;c&#39;&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;d&#39;&lt;/span&gt;]  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;print meuArray[&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;:]  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;print meuArray[:&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;]  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;print meuArray[&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;:&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;O primeiro print irá retornar: &lt;code&gt;[&amp;#39;c&amp;#39;, &amp;#39;d&amp;#39;]&lt;/code&gt;&lt;br&gt;O segundo irá retornar: &lt;code&gt;[&amp;#39;a&amp;#39;, &amp;#39;b&amp;#39;, &amp;#39;c&amp;#39;]&lt;/code&gt;&lt;br&gt;O último irá retornar: &lt;code&gt;[&amp;#39;b&amp;#39;]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Como não temos algo assim em JS e nem nativo no Angular, é necessário criar um filter, mais ou menos assim:&lt;/p&gt;
+&lt;figure class=&quot;highlight actionscript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;app.filter(&lt;span class=&quot;string&quot;&gt;&#39;slice&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(arr, inicio, fim)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    inicio = inicio ? inicio : &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (fim) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; arr.slice(inicio, fim);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; arr.slice(inicio);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#125;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Para utilizá-lo:&lt;/p&gt;
+&lt;figure class=&quot;highlight django&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;ul&lt;/span&gt;&amp;gt;&lt;/span&gt;  &lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;li&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;ng-repeat&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;item in meuArray | slice:1:2&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;template-variable&quot;&gt;&amp;#123;&amp;#123;item&amp;#125;&amp;#125;&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;li&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;ul&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Fiddle: &lt;a href=&quot;https://jsfiddle.net/6zvcd6vz/2/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://jsfiddle.net/6zvcd6vz/2/&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Quando estou desenvolvendo em JS às vezes sinto falta do Python e seus operadores malandros, do tipo:&lt;/p&gt;
+&lt;figure class=&quot;highlight prolog
+    
+    </summary>
+    
+    
+      <category term="angular" scheme="http://http://brutto-avt.github.io/tags/angular/"/>
+    
+  </entry>
+  
+</feed>
