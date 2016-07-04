@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Brutto-AVT">
-    <title>Tag: angular - Brutto-AVT</title>
+    <title>all-archives - Brutto-AVT</title>
     <meta name="author" content="Brutto-AVT">
     
         <meta name="keywords" content="javascript,linux,angular,nodejs,">
@@ -17,12 +17,13 @@
     
     <meta name="description" content="NodeJS, Angular e mais.">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Brutto-AVT">
-<meta property="og:url" content="http://http://brutto-avt.github.io/tags/angular/index.html">
+<meta property="og:title" content="all-archives">
+<meta property="og:url" content="http://http://brutto-avt.github.io/all-archives/index.html">
 <meta property="og:site_name" content="Brutto-AVT">
 <meta property="og:description" content="NodeJS, Angular e mais.">
+<meta property="og:updated_time" content="2016-07-04T23:35:43.948Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Brutto-AVT">
+<meta name="twitter:title" content="all-archives">
 <meta name="twitter:description" content="NodeJS, Angular e mais.">
 <meta property="fb:app_id" content="798811546921989">
     
@@ -213,69 +214,50 @@
                         hasCoverMetaIn
                         ">
                 
-    
-
-<section class="postShorten-group main-content-wrap">
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
+<div id="archives" class="main-content-wrap">
+    <form id="filter-form" action="#">
+        <input name="date" type="text" class="form-control input--xlarge" placeholder="Pesquisar data (AAAA/MM/DD)" autofocus="autofocus">
+    </form>
+    <h5 class="archive-result text-color-base text-xlarge"
+        data-message-zero="não foram encontrados artigos"
+        data-message-one="1 artigo encontrados"
+        data-message-other="{n} artigos encontrados"></h5>
+    <section class="boxes">
+        
             
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/04/07/2016/Dica-util-do-dia-Filtro-slice/">
-                            Dica útil do dia - Filtro slice
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2016-07-04T19:01:48-03:00">
-	
-		    04/07/2016
-    	
-    </time>
-    
+            
+            
+                
+                
+                <div class="archive archive-year box" data-date="2016">
+                    <h4 class="archive-title">
+                        <a class="link-unstyled" href="/archives/2016">2016</a>
+                    </h4>
+            
+            
+                
+                <ul class="archive-posts archive-month" data-date="201607">
+                    <h5 class="archive-title">
+                        <a class="link-unstyled" href="/archives/2016/07">Julho</a>
+                    </h5>
+                
+            
+            <li class="archive-post archive-day" data-date="20160704">
+                <a class="archive-post-title" href="/04/07/2016/Debugando-Node-via-console/">Debugando Node via console</a>
+                <span class="archive-post-date"> - 04/07/2016</span>
+            </li>
+        
+            
+            
+            
+            
+            <li class="archive-post archive-day" data-date="20160704">
+                <a class="archive-post-title" href="/04/07/2016/Dica-util-do-dia-Filtro-slice/">Dica útil do dia - Filtro slice</a>
+                <span class="archive-post-date"> - 04/07/2016</span>
+            </li>
+        
+    </section>
 </div>
-
-            </div>
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    <p>Quando estou desenvolvendo em JS às vezes sinto falta do Python e seus operadores malandros, do tipo:</p>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">meuArray = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]  </div><div class="line">print meuArray[<span class="number">2</span>:]  </div><div class="line">print meuArray[:<span class="number">3</span>]  </div><div class="line">print meuArray[<span class="number">1</span>:<span class="number">2</span>]</div></pre></td></tr></table></figure>
-<p>O primeiro print irá retornar: <code>[&#39;c&#39;, &#39;d&#39;]</code><br>O segundo irá retornar: <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</code><br>O último irá retornar: <code>[&#39;b&#39;]</code></p>
-<p>Como não temos algo assim em JS e nem nativo no Angular, é necessário criar um filter, mais ou menos assim:</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">app.filter(<span class="string">'slice'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;  </div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(arr, inicio, fim)</span> </span>&#123;</div><div class="line">    inicio = inicio ? inicio : <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (fim) &#123;</div><div class="line">        <span class="keyword">return</span> arr.slice(inicio, fim);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr.slice(inicio);</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>Para utilizá-lo:</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>  </span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"item in meuArray | slice:1:2"</span>&gt;</span><span class="template-variable">&#123;&#123;item&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>Fiddle: <a href="https://jsfiddle.net/6zvcd6vz/2/" target="_blank" rel="external">https://jsfiddle.net/6zvcd6vz/2/</a></p>
-
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/04/07/2016/Dica-util-do-dia-Filtro-slice/#post-footer" class="postShorten-excerpt_link link">
-                                Comentar e compartilhar
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    <div class="pagination-bar">
-    <ul class="pagination">
-        
-        
-        <li class="pagination-number">página 1 de 1</li>
-    </ul>
-</div>
-
-</section>
-
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
