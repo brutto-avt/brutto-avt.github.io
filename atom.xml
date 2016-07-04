@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://http://brutto-avt.github.io/"/>
-  <updated>2016-07-04T22:08:47.580Z</updated>
+  <updated>2016-07-04T22:47:20.815Z</updated>
   <id>http://http://brutto-avt.github.io/</id>
   
   <author>
@@ -14,6 +14,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Debugando Node via console</title>
+    <link href="http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/"/>
+    <id>http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/</id>
+    <published>2016-07-04T22:40:07.000Z</published>
+    <updated>2016-07-04T22:47:20.815Z</updated>
+    
+    <content type="html">&lt;p&gt;Nem sempre podemos nos dar ao luxo de ter uma IDE à mão naquele momento em que precisamos corrigir algum erro ou mesmo testar nosso código. Além disso, várias IDEs adicionam uma carga extra na hora de debuggar uma aplicação, tornando a execução em modo debug mais lenta.&lt;/p&gt;
+&lt;p&gt;Qualquer que seja o caso, se você estiver sem uma IDE, apenas quiser economizar tempo ou então simplesmente quiser aprender uma forma diferente, eis o momento.&lt;/p&gt;
+&lt;p&gt;Para começar é bastante simples. Basta rodar o seguinte comando no console:&lt;br&gt;&lt;code&gt;node --debug index.js&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Ou, se preferir que o debugger pare imediatamente na primeira linha do seu script, o comando muda um pouco:&lt;br&gt;&lt;code&gt;node --debug-brk index.js&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;A partir daí, você pode adicionar breakpoints no seu código desta forma:&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; teste = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;a, b&lt;/span&gt;) &lt;/span&gt;&amp;#123;  &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;debugger&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; a + b;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;A instrução &lt;code&gt;debugger&lt;/code&gt; sinaliza que naquela linha a execução deverá ser interrompida e o contexto analizado. Entretanto, é necessário reiniciar seu script para que o breakpoint tenha efeito. Isso é feito no console através do comando restart.&lt;/p&gt;
+&lt;p&gt;Para controlar a execução, basta usar os seguintes comandos no console:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cont&lt;/code&gt; ou &lt;code&gt;c&lt;/code&gt;: continua a execução (equivalente ao F8 no Chrome DevTools)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pause&lt;/code&gt;: pausa a execução (F8 no DevTools)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;next&lt;/code&gt; ou &lt;code&gt;n&lt;/code&gt;: avança para a próxima linha (F10 no DevTools)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;step&lt;/code&gt; ou &lt;code&gt;s&lt;/code&gt;: “entra” em uma função (F11 no DevTools)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;out&lt;/code&gt; ou &lt;code&gt;o&lt;/code&gt;: “sai” de uma função (Shift + F11 no DevTools)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Se preferir adicionar breakpoints sem ter que alterar seu script ou reiniciar sua aplicação, você pode seguir o seguinte:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sb()&lt;/code&gt;: define um breakpoint na linha atual&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sb(8)&lt;/code&gt;: define um breakpoint na linha 8 do script atual&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sb(&amp;#39;minhaFuncao()&amp;#39;)&lt;/code&gt;: define um breakpoint na primeira linha da função informada&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sb(&amp;#39;outro-script.js&amp;#39;, 2)&lt;/code&gt;: define um breakpoint na linha 2 do script informado&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cb(...)&lt;/code&gt;: remove um breakpoint (aceita os mesmos parâmetros do comando sb()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Também é possível observar valores com o comando watch, por exemplo:&lt;br&gt;&lt;code&gt;watch(JSON.stringify(meuObjeto))&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;A qualquer momento você pode consultar o valor de seus watchs com o comando watchers. Para remover um watch, o comando é &lt;code&gt;unwatch(...)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Mais alguns comandos úteis:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;list(10)&lt;/code&gt;: mostra 10 linhas de código antes e depois da linha atual&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;exec JSON.stringify(meuObjeto)&lt;/code&gt;: executa uma expressão no contexto atual&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;repl&lt;/code&gt;: abre um “shell” do node no contexto atual onde você pode editar o código em tempo de execução (entretanto ele não será salvo). Para sair do shell, basta teclar CTRL + C&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Nem sempre podemos nos dar ao luxo de ter uma IDE à mão naquele momento em que precisamos corrigir algum erro ou mesmo testar nosso códig
+    
+    </summary>
+    
+    
+      <category term="node" scheme="http://http://brutto-avt.github.io/tags/node/"/>
+    
+  </entry>
   
   <entry>
     <title>Dica útil do dia - Filtro slice</title>

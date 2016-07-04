@@ -190,6 +190,78 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
                     
+                        <a class="link-unstyled" href="/04/07/2016/Debugando-Node-via-console/">
+                            Debugando Node via console
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2016-07-04T19:40:07-03:00">
+	
+		    04/07/2016
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content" itemprop="articleBody">
+                    <p>Nem sempre podemos nos dar ao luxo de ter uma IDE à mão naquele momento em que precisamos corrigir algum erro ou mesmo testar nosso código. Além disso, várias IDEs adicionam uma carga extra na hora de debuggar uma aplicação, tornando a execução em modo debug mais lenta.</p>
+<p>Qualquer que seja o caso, se você estiver sem uma IDE, apenas quiser economizar tempo ou então simplesmente quiser aprender uma forma diferente, eis o momento.</p>
+<p>Para começar é bastante simples. Basta rodar o seguinte comando no console:<br><code>node --debug index.js</code></p>
+<p>Ou, se preferir que o debugger pare imediatamente na primeira linha do seu script, o comando muda um pouco:<br><code>node --debug-brk index.js</code></p>
+<p>A partir daí, você pode adicionar breakpoints no seu código desta forma:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> teste = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;  </div><div class="line">    <span class="keyword">debugger</span>;</div><div class="line">    <span class="keyword">return</span> a + b;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>A instrução <code>debugger</code> sinaliza que naquela linha a execução deverá ser interrompida e o contexto analizado. Entretanto, é necessário reiniciar seu script para que o breakpoint tenha efeito. Isso é feito no console através do comando restart.</p>
+<p>Para controlar a execução, basta usar os seguintes comandos no console:</p>
+<ul>
+<li><code>cont</code> ou <code>c</code>: continua a execução (equivalente ao F8 no Chrome DevTools)</li>
+<li><code>pause</code>: pausa a execução (F8 no DevTools)</li>
+<li><code>next</code> ou <code>n</code>: avança para a próxima linha (F10 no DevTools)</li>
+<li><code>step</code> ou <code>s</code>: “entra” em uma função (F11 no DevTools)</li>
+<li><code>out</code> ou <code>o</code>: “sai” de uma função (Shift + F11 no DevTools)</li>
+</ul>
+<p>Se preferir adicionar breakpoints sem ter que alterar seu script ou reiniciar sua aplicação, você pode seguir o seguinte:</p>
+<ul>
+<li><code>sb()</code>: define um breakpoint na linha atual</li>
+<li><code>sb(8)</code>: define um breakpoint na linha 8 do script atual</li>
+<li><code>sb(&#39;minhaFuncao()&#39;)</code>: define um breakpoint na primeira linha da função informada</li>
+<li><code>sb(&#39;outro-script.js&#39;, 2)</code>: define um breakpoint na linha 2 do script informado</li>
+<li><code>cb(...)</code>: remove um breakpoint (aceita os mesmos parâmetros do comando sb()</li>
+</ul>
+<p>Também é possível observar valores com o comando watch, por exemplo:<br><code>watch(JSON.stringify(meuObjeto))</code></p>
+<p>A qualquer momento você pode consultar o valor de seus watchs com o comando watchers. Para remover um watch, o comando é <code>unwatch(...)</code>.</p>
+<p>Mais alguns comandos úteis:</p>
+<ul>
+<li><code>list(10)</code>: mostra 10 linhas de código antes e depois da linha atual</li>
+<li><code>exec JSON.stringify(meuObjeto)</code>: executa uma expressão no contexto atual</li>
+<li><code>repl</code>: abre um “shell” do node no contexto atual onde você pode editar o código em tempo de execução (entretanto ele não será salvo). Para sair do shell, basta teclar CTRL + C</li>
+</ul>
+
+                    
+                        
+                    
+                    
+                        <p>
+                            <a href="/04/07/2016/Debugando-Node-via-console/#post-footer" class="postShorten-excerpt_link link">
+                                Comentar e compartilhar
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
                         <a class="link-unstyled" href="/04/07/2016/Dica-util-do-dia-Filtro-slice/">
                             Dica útil do dia - Filtro slice
                         </a>

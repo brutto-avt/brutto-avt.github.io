@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Brutto-AVT">
-    <title>Arquivo: 2016/7 - Brutto-AVT</title>
+    <title>Tag: node - Brutto-AVT</title>
     <meta name="author" content="Brutto-AVT">
     
         <meta name="keywords" content="javascript,linux,angular,nodejs,">
@@ -18,7 +18,7 @@
     <meta name="description" content="NodeJS, Angular e mais.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Brutto-AVT">
-<meta property="og:url" content="http://http://brutto-avt.github.io/archives/2016/07/index.html">
+<meta property="og:url" content="http://http://brutto-avt.github.io/tags/node/index.html">
 <meta property="og:site_name" content="Brutto-AVT">
 <meta property="og:description" content="NodeJS, Angular e mais.">
 <meta name="twitter:card" content="summary">
@@ -256,55 +256,6 @@
         
     </article>
     
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/04/07/2016/Dica-util-do-dia-Filtro-slice/">
-                            Dica útil do dia - Filtro slice
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2016-07-04T19:01:48-03:00">
-	
-		    04/07/2016
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    <p>Quando estou desenvolvendo em JS às vezes sinto falta do Python e seus operadores malandros, do tipo:</p>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">meuArray = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]  </div><div class="line">print meuArray[<span class="number">2</span>:]  </div><div class="line">print meuArray[:<span class="number">3</span>]  </div><div class="line">print meuArray[<span class="number">1</span>:<span class="number">2</span>]</div></pre></td></tr></table></figure>
-<p>O primeiro print irá retornar: <code>[&#39;c&#39;, &#39;d&#39;]</code><br>O segundo irá retornar: <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</code><br>O último irá retornar: <code>[&#39;b&#39;]</code></p>
-<p>Como não temos algo assim em JS e nem nativo no Angular, é necessário criar um filter, mais ou menos assim:</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">app.filter(<span class="string">'slice'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;  </div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(arr, inicio, fim)</span> </span>&#123;</div><div class="line">    inicio = inicio ? inicio : <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (fim) &#123;</div><div class="line">        <span class="keyword">return</span> arr.slice(inicio, fim);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr.slice(inicio);</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>Para utilizá-lo:</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>  </span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"item in meuArray | slice:1:2"</span>&gt;</span><span class="template-variable">&#123;&#123;item&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>Fiddle: <a href="https://jsfiddle.net/6zvcd6vz/2/" target="_blank" rel="external">https://jsfiddle.net/6zvcd6vz/2/</a></p>
-
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/04/07/2016/Dica-util-do-dia-Filtro-slice/#post-footer" class="postShorten-excerpt_link link">
-                                Comentar e compartilhar
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
     <div class="pagination-bar">
     <ul class="pagination">
         
@@ -314,7 +265,6 @@
 </div>
 
 </section>
-
 
 
                 <footer id="footer" class="main-content-wrap">

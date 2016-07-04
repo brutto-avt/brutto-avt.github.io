@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Brutto-AVT">
-    <title>Dica útil do dia - Filtro slice - Brutto-AVT</title>
+    <title>Debugando Node via console - Brutto-AVT</title>
     <meta name="author" content="Brutto-AVT">
     
         <meta name="keywords" content="javascript,linux,angular,nodejs,">
@@ -15,22 +15,16 @@
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="Quando estou desenvolvendo em JS às vezes sinto falta do Python e seus operadores malandros, do tipo:
-1234meuArray = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;]  print meuArray[2:]  print meuArray[:3]  print meuArray[1:2]
-O pr">
+    <meta name="description" content="Nem sempre podemos nos dar ao luxo de ter uma IDE à mão naquele momento em que precisamos corrigir algum erro ou mesmo testar nosso código. Além disso, várias IDEs adicionam uma carga extra na hora de">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Dica útil do dia - Filtro slice">
-<meta property="og:url" content="http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/index.html">
+<meta property="og:title" content="Debugando Node via console">
+<meta property="og:url" content="http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/index.html">
 <meta property="og:site_name" content="Brutto-AVT">
-<meta property="og:description" content="Quando estou desenvolvendo em JS às vezes sinto falta do Python e seus operadores malandros, do tipo:
-1234meuArray = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;]  print meuArray[2:]  print meuArray[:3]  print meuArray[1:2]
-O pr">
-<meta property="og:updated_time" content="2016-07-04T22:08:47.580Z">
+<meta property="og:description" content="Nem sempre podemos nos dar ao luxo de ter uma IDE à mão naquele momento em que precisamos corrigir algum erro ou mesmo testar nosso código. Além disso, várias IDEs adicionam uma carga extra na hora de">
+<meta property="og:updated_time" content="2016-07-04T22:47:20.815Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dica útil do dia - Filtro slice">
-<meta name="twitter:description" content="Quando estou desenvolvendo em JS às vezes sinto falta do Python e seus operadores malandros, do tipo:
-1234meuArray = [&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;]  print meuArray[2:]  print meuArray[:3]  print meuArray[1:2]
-O pr">
+<meta name="twitter:title" content="Debugando Node via console">
+<meta name="twitter:description" content="Nem sempre podemos nos dar ao luxo de ter uma IDE à mão naquele momento em que precisamos corrigir algum erro ou mesmo testar nosso código. Além disso, várias IDEs adicionam uma carga extra na hora de">
     
     
         
@@ -193,11 +187,11 @@ O pr">
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            Dica útil do dia - Filtro slice
+            Debugando Node via console
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" datetime="2016-07-04T19:01:48-03:00">
+    <time itemprop="datePublished" datetime="2016-07-04T19:40:07-03:00">
 	
 		    04/07/2016
     	
@@ -209,14 +203,37 @@ O pr">
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <p>Quando estou desenvolvendo em JS às vezes sinto falta do Python e seus operadores malandros, do tipo:</p>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">meuArray = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]  </div><div class="line">print meuArray[<span class="number">2</span>:]  </div><div class="line">print meuArray[:<span class="number">3</span>]  </div><div class="line">print meuArray[<span class="number">1</span>:<span class="number">2</span>]</div></pre></td></tr></table></figure>
-<p>O primeiro print irá retornar: <code>[&#39;c&#39;, &#39;d&#39;]</code><br>O segundo irá retornar: <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</code><br>O último irá retornar: <code>[&#39;b&#39;]</code></p>
-<p>Como não temos algo assim em JS e nem nativo no Angular, é necessário criar um filter, mais ou menos assim:</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">app.filter(<span class="string">'slice'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;  </div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(arr, inicio, fim)</span> </span>&#123;</div><div class="line">    inicio = inicio ? inicio : <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (fim) &#123;</div><div class="line">        <span class="keyword">return</span> arr.slice(inicio, fim);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr.slice(inicio);</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>Para utilizá-lo:</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>  </span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"item in meuArray | slice:1:2"</span>&gt;</span><span class="template-variable">&#123;&#123;item&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>Fiddle: <a href="https://jsfiddle.net/6zvcd6vz/2/" target="_blank" rel="external">https://jsfiddle.net/6zvcd6vz/2/</a></p>
+            <p>Nem sempre podemos nos dar ao luxo de ter uma IDE à mão naquele momento em que precisamos corrigir algum erro ou mesmo testar nosso código. Além disso, várias IDEs adicionam uma carga extra na hora de debuggar uma aplicação, tornando a execução em modo debug mais lenta.</p>
+<p>Qualquer que seja o caso, se você estiver sem uma IDE, apenas quiser economizar tempo ou então simplesmente quiser aprender uma forma diferente, eis o momento.</p>
+<p>Para começar é bastante simples. Basta rodar o seguinte comando no console:<br><code>node --debug index.js</code></p>
+<p>Ou, se preferir que o debugger pare imediatamente na primeira linha do seu script, o comando muda um pouco:<br><code>node --debug-brk index.js</code></p>
+<p>A partir daí, você pode adicionar breakpoints no seu código desta forma:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> teste = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;  </div><div class="line">    <span class="keyword">debugger</span>;</div><div class="line">    <span class="keyword">return</span> a + b;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>A instrução <code>debugger</code> sinaliza que naquela linha a execução deverá ser interrompida e o contexto analizado. Entretanto, é necessário reiniciar seu script para que o breakpoint tenha efeito. Isso é feito no console através do comando restart.</p>
+<p>Para controlar a execução, basta usar os seguintes comandos no console:</p>
+<ul>
+<li><code>cont</code> ou <code>c</code>: continua a execução (equivalente ao F8 no Chrome DevTools)</li>
+<li><code>pause</code>: pausa a execução (F8 no DevTools)</li>
+<li><code>next</code> ou <code>n</code>: avança para a próxima linha (F10 no DevTools)</li>
+<li><code>step</code> ou <code>s</code>: “entra” em uma função (F11 no DevTools)</li>
+<li><code>out</code> ou <code>o</code>: “sai” de uma função (Shift + F11 no DevTools)</li>
+</ul>
+<p>Se preferir adicionar breakpoints sem ter que alterar seu script ou reiniciar sua aplicação, você pode seguir o seguinte:</p>
+<ul>
+<li><code>sb()</code>: define um breakpoint na linha atual</li>
+<li><code>sb(8)</code>: define um breakpoint na linha 8 do script atual</li>
+<li><code>sb(&#39;minhaFuncao()&#39;)</code>: define um breakpoint na primeira linha da função informada</li>
+<li><code>sb(&#39;outro-script.js&#39;, 2)</code>: define um breakpoint na linha 2 do script informado</li>
+<li><code>cb(...)</code>: remove um breakpoint (aceita os mesmos parâmetros do comando sb()</li>
+</ul>
+<p>Também é possível observar valores com o comando watch, por exemplo:<br><code>watch(JSON.stringify(meuObjeto))</code></p>
+<p>A qualquer momento você pode consultar o valor de seus watchs com o comando watchers. Para remover um watch, o comando é <code>unwatch(...)</code>.</p>
+<p>Mais alguns comandos úteis:</p>
+<ul>
+<li><code>list(10)</code>: mostra 10 linhas de código antes e depois da linha atual</li>
+<li><code>exec JSON.stringify(meuObjeto)</code>: executa uma expressão no contexto atual</li>
+<li><code>repl</code>: abre um “shell” do node no contexto atual onde você pode editar o código em tempo de execução (entretanto ele não será salvo). Para sair do shell, basta teclar CTRL + C</li>
+</ul>
 
             
         </div>
@@ -226,7 +243,7 @@ O pr">
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">ETIQUETADO em</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/angular/">angular</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/node/">node</a>
 
             </div>
         
@@ -235,7 +252,7 @@ O pr">
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/04/07/2016/Debugando-Node-via-console/"  data-tooltip="Debugando Node via console">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">ANTERIOR</span>
@@ -243,7 +260,7 @@ O pr">
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/04/07/2016/Dica-util-do-dia-Filtro-slice/" data-tooltip="Dica útil do dia - Filtro slice">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">PRÓXIMO</span>
                     <i class="fa fa-angle-right"></i>
@@ -258,17 +275,17 @@ O pr">
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -306,7 +323,7 @@ O pr">
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/04/07/2016/Debugando-Node-via-console/"  data-tooltip="Debugando Node via console">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">ANTERIOR</span>
@@ -314,7 +331,7 @@ O pr">
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--disabled">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/04/07/2016/Dica-util-do-dia-Filtro-slice/" data-tooltip="Dica útil do dia - Filtro slice">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">PRÓXIMO</span>
                     <i class="fa fa-angle-right"></i>
@@ -329,17 +346,17 @@ O pr">
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -359,17 +376,17 @@ O pr">
                 <div id="share-options-bar" class="share-options-bar" data-behavior="4">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/">
                 <i class="fa fa-google-plus"></i><span class="">Partilhar no Google Plus</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/">
                 <i class="fa fa-facebook-official"></i><span>SPartilhar no Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://http://brutto-avt.github.io/04/07/2016/Dica-util-do-dia-Filtro-slice/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://http://brutto-avt.github.io/04/07/2016/Debugando-Node-via-console/">
                 <i class="fa fa-twitter"></i><span>Partilhar no Twitter</span>
             </a>
         </li>
