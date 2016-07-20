@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://brutto-avt.github.io/"/>
-  <updated>2016-07-04T22:47:20.815Z</updated>
+  <updated>2016-07-20T02:54:14.349Z</updated>
   <id>http://brutto-avt.github.io/</id>
   
   <author>
@@ -14,6 +14,70 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dica útil do dia - Controle no ngRepeat</title>
+    <link href="http://brutto-avt.github.io/19/07/2016/Dica-util-do-dia-Controle-no-ngRepeat/"/>
+    <id>http://brutto-avt.github.io/19/07/2016/Dica-util-do-dia-Controle-no-ngRepeat/</id>
+    <published>2016-07-20T02:32:39.000Z</published>
+    <updated>2016-07-20T02:54:14.349Z</updated>
+    
+    <content type="html">&lt;p&gt;Uma coisa bastante útil que descobri é que é possível obter o par chave-valor dentro do ngRepeat. Isso torna as coisas mais interessantes, aumentando as possibilidades do que pode ser feito com a diretiva.&lt;/p&gt;
+&lt;p&gt;Supondo que eu deseje gerar uma tabela com um número dinâmico tanto de linhas, quanto de colunas e partindo do princípio de que eu tenho os dados no seguinte formato e gostaria de obter o resultado abaixo:&lt;/p&gt;
+&lt;figure class=&quot;highlight groovy&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$scope.dados = [&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#123;&lt;span class=&quot;string&quot;&gt;col_1:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;aaa&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;col_2:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;bbb&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;col_3:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;ccc&#39;&lt;/span&gt;&amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#123;&lt;span class=&quot;string&quot;&gt;col_1:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;ddd&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;col_2:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;eee&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;col_3:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;fff&#39;&lt;/span&gt;&amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#123;&lt;span class=&quot;string&quot;&gt;col_1:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;ggg&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;col_2:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;hhh&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;col_3:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;iii&#39;&lt;/span&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Coluna 1&lt;/th&gt;
+&lt;th&gt;Coluna 2&lt;/th&gt;
+&lt;th&gt;Coluna 3&lt;/th&gt;
+&lt;th&gt;…&lt;/th&gt;
+&lt;th&gt;Coluna N&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;aaa&lt;/td&gt;
+&lt;td&gt;bbb&lt;/td&gt;
+&lt;td&gt;ccc&lt;/td&gt;
+&lt;td&gt;…&lt;/td&gt;
+&lt;td&gt;…&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ddd&lt;/td&gt;
+&lt;td&gt;eee&lt;/td&gt;
+&lt;td&gt;fff&lt;/td&gt;
+&lt;td&gt;…&lt;/td&gt;
+&lt;td&gt;…&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ggg&lt;/td&gt;
+&lt;td&gt;hhh&lt;/td&gt;
+&lt;td&gt;iii&lt;/td&gt;
+&lt;td&gt;…&lt;/td&gt;
+&lt;td&gt;zzz&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Para obter o nome da chave é simples assim:&lt;/p&gt;
+&lt;figure class=&quot;highlight django&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;ng-repeat&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;linha in dados&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;td&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;ng-repeat&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;(chave, valor) in linha&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;template-variable&quot;&gt;&amp;#123;&amp;#123; valor &amp;#125;&amp;#125;&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;td&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;tr&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Caso eu deseje dar um nome mais humanizado às colunas, posso adicionar um novo objeto de mapeamento:&lt;/p&gt;
+&lt;figure class=&quot;highlight gams&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;&lt;span class=&quot;meta-keyword&quot;&gt;$scope&lt;/span&gt;.colunas = &amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  col_1: &lt;span class=&quot;string&quot;&gt;&#39;Coluna 1&#39;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  col_2: &lt;span class=&quot;string&quot;&gt;&#39;Coluna 2&#39;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  col_3: &lt;span class=&quot;string&quot;&gt;&#39;Coluna 3&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;E finalmente, o resultado final:&lt;/p&gt;
+&lt;figure class=&quot;highlight django&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;table&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;thead&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;tr&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;th&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;ng-repeat&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;col in colunas&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;template-variable&quot;&gt;&amp;#123;&amp;#123; col &amp;#125;&amp;#125;&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;th&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;tr&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;thead&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;tbody&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;tr&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;ng-repeat&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;linha in dados&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;td&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;ng-repeat&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;(chave, valor) in linha&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;template-variable&quot;&gt;&amp;#123;&amp;#123; valor &amp;#125;&amp;#125;&lt;/span&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;td&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;tr&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;tbody&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;table&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Plunkr: &lt;a href=&quot;https://plnkr.co/edit/9wLTqgNUB7qG8qA499Hx?p=preview&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://plnkr.co/edit/9wLTqgNUB7qG8qA499Hx?p=preview&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Uma coisa bastante útil que descobri é que é possível obter o par chave-valor dentro do ngRepeat. Isso torna as coisas mais interessantes
+    
+    </summary>
+    
+    
+      <category term="angular" scheme="http://brutto-avt.github.io/tags/angular/"/>
+    
+  </entry>
   
   <entry>
     <title>Debugando Node via console</title>

@@ -221,6 +221,91 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
                     
+                        <a class="link-unstyled" href="/19/07/2016/Dica-util-do-dia-Controle-no-ngRepeat/">
+                            Dica útil do dia - Controle no ngRepeat
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2016-07-19T23:32:39-03:00">
+	
+		    19/07/2016
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content" itemprop="articleBody">
+                    <p>Uma coisa bastante útil que descobri é que é possível obter o par chave-valor dentro do ngRepeat. Isso torna as coisas mais interessantes, aumentando as possibilidades do que pode ser feito com a diretiva.</p>
+<p>Supondo que eu deseje gerar uma tabela com um número dinâmico tanto de linhas, quanto de colunas e partindo do princípio de que eu tenho os dados no seguinte formato e gostaria de obter o resultado abaixo:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$scope.dados = [</div><div class="line">  &#123;<span class="string">col_1:</span> <span class="string">'aaa'</span>, <span class="string">col_2:</span> <span class="string">'bbb'</span>, <span class="string">col_3:</span> <span class="string">'ccc'</span>&#125;,</div><div class="line">  &#123;<span class="string">col_1:</span> <span class="string">'ddd'</span>, <span class="string">col_2:</span> <span class="string">'eee'</span>, <span class="string">col_3:</span> <span class="string">'fff'</span>&#125;,</div><div class="line">  &#123;<span class="string">col_1:</span> <span class="string">'ggg'</span>, <span class="string">col_2:</span> <span class="string">'hhh'</span>, <span class="string">col_3:</span> <span class="string">'iii'</span>&#125;</div><div class="line">];</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>Coluna 1</th>
+<th>Coluna 2</th>
+<th>Coluna 3</th>
+<th>…</th>
+<th>Coluna N</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aaa</td>
+<td>bbb</td>
+<td>ccc</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>ddd</td>
+<td>eee</td>
+<td>fff</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>ggg</td>
+<td>hhh</td>
+<td>iii</td>
+<td>…</td>
+<td>zzz</td>
+</tr>
+</tbody>
+</table>
+<p>Para obter o nome da chave é simples assim:</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">ng-repeat</span>=<span class="string">"linha in dados"</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">td</span> <span class="attr">ng-repeat</span>=<span class="string">"(chave, valor) in linha"</span>&gt;</span><span class="template-variable">&#123;&#123; valor &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>Caso eu deseje dar um nome mais humanizado às colunas, posso adicionar um novo objeto de mapeamento:</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">$scope</span>.colunas = &#123;</span></div><div class="line">  col_1: <span class="string">'Coluna 1'</span>,</div><div class="line">  col_2: <span class="string">'Coluna 2'</span>,</div><div class="line">  col_3: <span class="string">'Coluna 3'</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>E finalmente, o resultado final:</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">thead</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span> <span class="attr">ng-repeat</span>=<span class="string">"col in colunas"</span>&gt;</span><span class="template-variable">&#123;&#123; col &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">th</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span> <span class="attr">ng-repeat</span>=<span class="string">"linha in dados"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span> <span class="attr">ng-repeat</span>=<span class="string">"(chave, valor) in linha"</span>&gt;</span><span class="template-variable">&#123;&#123; valor &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>Plunkr: <a href="https://plnkr.co/edit/9wLTqgNUB7qG8qA499Hx?p=preview" target="_blank" rel="external">https://plnkr.co/edit/9wLTqgNUB7qG8qA499Hx?p=preview</a></p>
+
+                    
+                        
+                    
+                    
+                        <p>
+                            <a href="/19/07/2016/Dica-util-do-dia-Controle-no-ngRepeat/#post-footer" class="postShorten-excerpt_link link">
+                                Comentar e compartilhar
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
                         <a class="link-unstyled" href="/04/07/2016/Debugando-Node-via-console/">
                             Debugando Node via console
                         </a>
