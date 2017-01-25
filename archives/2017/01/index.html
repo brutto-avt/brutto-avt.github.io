@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Brutto-AVT">
-    <title>Brutto-AVT</title>
+    <title>Arquivo: 2017/1 - Brutto-AVT</title>
     <meta name="author" content="Brutto-AVT">
     
         <meta name="keywords" content="javascript,linux,angular,nodejs,">
@@ -18,7 +18,7 @@
     <meta name="description" content="NodeJS, Angular e mais.">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Brutto-AVT">
-<meta property="og:url" content="http://brutto-avt.github.io/index.html">
+<meta property="og:url" content="http://brutto-avt.github.io/archives/2017/01/index.html">
 <meta property="og:site_name" content="Brutto-AVT">
 <meta property="og:description" content="NodeJS, Angular e mais.">
 <meta name="twitter:card" content="summary">
@@ -210,6 +210,7 @@
                         hasCoverMetaIn
                         ">
                 
+    
 
 <section class="postShorten-group main-content-wrap">
     
@@ -312,212 +313,6 @@
         
     </article>
     
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/19/07/2016/Dica-util-do-dia-Controle-no-ngRepeat/">
-                            Dica útil do dia - Controle no ngRepeat
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2016-07-19T23:32:39-03:00">
-	
-		    19/07/2016
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    <p>Uma coisa bastante útil que descobri é que é possível obter o par chave-valor dentro do ngRepeat. Isso torna as coisas mais interessantes, aumentando as possibilidades do que pode ser feito com a diretiva.</p>
-<p>Supondo que eu deseje gerar uma tabela com um número dinâmico tanto de linhas, quanto de colunas e partindo do princípio de que eu tenho os dados no seguinte formato e gostaria de obter o resultado abaixo:</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$scope.dados = [</div><div class="line">  &#123;<span class="string">col_1:</span> <span class="string">'aaa'</span>, <span class="string">col_2:</span> <span class="string">'bbb'</span>, <span class="string">col_3:</span> <span class="string">'ccc'</span>&#125;,</div><div class="line">  &#123;<span class="string">col_1:</span> <span class="string">'ddd'</span>, <span class="string">col_2:</span> <span class="string">'eee'</span>, <span class="string">col_3:</span> <span class="string">'fff'</span>&#125;,</div><div class="line">  &#123;<span class="string">col_1:</span> <span class="string">'ggg'</span>, <span class="string">col_2:</span> <span class="string">'hhh'</span>, <span class="string">col_3:</span> <span class="string">'iii'</span>&#125;</div><div class="line">];</div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>Coluna 1</th>
-<th>Coluna 2</th>
-<th>Coluna 3</th>
-<th>…</th>
-<th>Coluna N</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>aaa</td>
-<td>bbb</td>
-<td>ccc</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr>
-<td>ddd</td>
-<td>eee</td>
-<td>fff</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr>
-<td>ggg</td>
-<td>hhh</td>
-<td>iii</td>
-<td>…</td>
-<td>zzz</td>
-</tr>
-</tbody>
-</table>
-<p>Para obter o nome da chave é simples assim:</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">tr</span> <span class="attr">ng-repeat</span>=<span class="string">"linha in dados"</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">td</span> <span class="attr">ng-repeat</span>=<span class="string">"(chave, valor) in linha"</span>&gt;</span><span class="template-variable">&#123;&#123; valor &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>Caso eu deseje dar um nome mais humanizado às colunas, posso adicionar um novo objeto de mapeamento:</p>
-<figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta"><span class="meta-keyword">$scope</span>.colunas = &#123;</span></div><div class="line">  col_1: <span class="string">'Coluna 1'</span>,</div><div class="line">  col_2: <span class="string">'Coluna 2'</span>,</div><div class="line">  col_3: <span class="string">'Coluna 3'</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>E finalmente, o resultado final:</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">thead</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">th</span> <span class="attr">ng-repeat</span>=<span class="string">"col in colunas"</span>&gt;</span><span class="template-variable">&#123;&#123; col &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">th</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span> <span class="attr">ng-repeat</span>=<span class="string">"linha in dados"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">td</span> <span class="attr">ng-repeat</span>=<span class="string">"(chave, valor) in linha"</span>&gt;</span><span class="template-variable">&#123;&#123; valor &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>Plunkr: <a href="https://plnkr.co/edit/9wLTqgNUB7qG8qA499Hx?p=preview" target="_blank" rel="external">https://plnkr.co/edit/9wLTqgNUB7qG8qA499Hx?p=preview</a></p>
-
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/19/07/2016/Dica-util-do-dia-Controle-no-ngRepeat/#post-footer" class="postShorten-excerpt_link link">
-                                Comentar e compartilhar
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/04/07/2016/Debugando-Node-via-console/">
-                            Debugando Node via console
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2016-07-04T19:40:07-03:00">
-	
-		    04/07/2016
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    <p>Nem sempre podemos nos dar ao luxo de ter uma IDE à mão naquele momento em que precisamos corrigir algum erro ou mesmo testar nosso código. Além disso, várias IDEs adicionam uma carga extra na hora de debuggar uma aplicação, tornando a execução em modo debug mais lenta.</p>
-<p>Qualquer que seja o caso, se você estiver sem uma IDE, apenas quiser economizar tempo ou então simplesmente quiser aprender uma forma diferente, eis o momento.</p>
-<p>Para começar é bastante simples. Basta rodar o seguinte comando no console:<br><code>node --debug index.js</code></p>
-<p>Ou, se preferir que o debugger pare imediatamente na primeira linha do seu script, o comando muda um pouco:<br><code>node --debug-brk index.js</code></p>
-<p>A partir daí, você pode adicionar breakpoints no seu código desta forma:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> teste = <span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;  </div><div class="line">    <span class="keyword">debugger</span>;</div><div class="line">    <span class="keyword">return</span> a + b;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>A instrução <code>debugger</code> sinaliza que naquela linha a execução deverá ser interrompida e o contexto analizado. Entretanto, é necessário reiniciar seu script para que o breakpoint tenha efeito. Isso é feito no console através do comando restart.</p>
-<p>Para controlar a execução, basta usar os seguintes comandos no console:</p>
-<ul>
-<li><code>cont</code> ou <code>c</code>: continua a execução (equivalente ao F8 no Chrome DevTools)</li>
-<li><code>pause</code>: pausa a execução (F8 no DevTools)</li>
-<li><code>next</code> ou <code>n</code>: avança para a próxima linha (F10 no DevTools)</li>
-<li><code>step</code> ou <code>s</code>: “entra” em uma função (F11 no DevTools)</li>
-<li><code>out</code> ou <code>o</code>: “sai” de uma função (Shift + F11 no DevTools)</li>
-</ul>
-<p>Se preferir adicionar breakpoints sem ter que alterar seu script ou reiniciar sua aplicação, você pode seguir o seguinte:</p>
-<ul>
-<li><code>sb()</code>: define um breakpoint na linha atual</li>
-<li><code>sb(8)</code>: define um breakpoint na linha 8 do script atual</li>
-<li><code>sb(&#39;minhaFuncao()&#39;)</code>: define um breakpoint na primeira linha da função informada</li>
-<li><code>sb(&#39;outro-script.js&#39;, 2)</code>: define um breakpoint na linha 2 do script informado</li>
-<li><code>cb(...)</code>: remove um breakpoint (aceita os mesmos parâmetros do comando sb()</li>
-</ul>
-<p>Também é possível observar valores com o comando watch, por exemplo:<br><code>watch(JSON.stringify(meuObjeto))</code></p>
-<p>A qualquer momento você pode consultar o valor de seus watchs com o comando watchers. Para remover um watch, o comando é <code>unwatch(...)</code>.</p>
-<p>Mais alguns comandos úteis:</p>
-<ul>
-<li><code>list(10)</code>: mostra 10 linhas de código antes e depois da linha atual</li>
-<li><code>exec JSON.stringify(meuObjeto)</code>: executa uma expressão no contexto atual</li>
-<li><code>repl</code>: abre um “shell” do node no contexto atual onde você pode editar o código em tempo de execução (entretanto ele não será salvo). Para sair do shell, basta teclar CTRL + C</li>
-</ul>
-
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/04/07/2016/Debugando-Node-via-console/#post-footer" class="postShorten-excerpt_link link">
-                                Comentar e compartilhar
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title" itemprop="headline">
-                    
-                        <a class="link-unstyled" href="/04/07/2016/Dica-util-do-dia-Filtro-slice/">
-                            Dica útil do dia - Filtro slice
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time itemprop="datePublished" datetime="2016-07-04T19:01:48-03:00">
-	
-		    04/07/2016
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content" itemprop="articleBody">
-                    <p>Quando estou desenvolvendo em JS às vezes sinto falta do Python e seus operadores malandros, do tipo:</p>
-<figure class="highlight prolog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">meuArray = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>]  </div><div class="line">print meuArray[<span class="number">2</span>:]  </div><div class="line">print meuArray[:<span class="number">3</span>]  </div><div class="line">print meuArray[<span class="number">1</span>:<span class="number">2</span>]</div></pre></td></tr></table></figure>
-<p>O primeiro print irá retornar: <code>[&#39;c&#39;, &#39;d&#39;]</code><br>O segundo irá retornar: <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</code><br>O último irá retornar: <code>[&#39;b&#39;]</code></p>
-<p>Como não temos algo assim em JS e nem nativo no Angular, é necessário criar um filter, mais ou menos assim:</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">app.filter(<span class="string">'slice'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;  </div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(arr, inicio, fim)</span> </span>&#123;</div><div class="line">    inicio = inicio ? inicio : <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (fim) &#123;</div><div class="line">        <span class="keyword">return</span> arr.slice(inicio, fim);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr.slice(inicio);</div><div class="line">  &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>Para utilizá-lo:</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>  </span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"item in meuArray | slice:1:2"</span>&gt;</span><span class="template-variable">&#123;&#123;item&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>Fiddle: <a href="https://jsfiddle.net/6zvcd6vz/2/" target="_blank" rel="external">https://jsfiddle.net/6zvcd6vz/2/</a></p>
-
-                    
-                        
-                    
-                    
-                        <p>
-                            <a href="/04/07/2016/Dica-util-do-dia-Filtro-slice/#post-footer" class="postShorten-excerpt_link link">
-                                Comentar e compartilhar
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
     <div class="pagination-bar">
     <ul class="pagination">
         
@@ -527,6 +322,7 @@
 </div>
 
 </section>
+
 
 
                 <footer id="footer" class="main-content-wrap">

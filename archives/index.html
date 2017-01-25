@@ -221,6 +221,105 @@
             <div class="postShorten-header">
                 <h1 class="postShorten-title" itemprop="headline">
                     
+                        <a class="link-unstyled" href="/24/01/2017/Evitando-o-callback-hell/">
+                            Evitando o callback hell
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time itemprop="datePublished" datetime="2017-01-24T23:54:45-02:00">
+	
+		    24/01/2017
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content" itemprop="articleBody">
+                    <p>O Javascript tem como uma de suas características mais marcantes o fato de ser assíncrono, ou seja, quando uma chamada a uma função que não irá retornar imediatamente seu valor é realizada, o interpretador simplesmente pula para a próxima linha de código, por exemplo:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">assincrono</span>(<span class="params">params</span>) </span>&#123;</div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(params.txt);</div><div class="line">  &#125;, params.milis);</div><div class="line">&#125;</div><div class="line"></div><div class="line">assincrono(&#123;txt:<span class="string">'primeiro'</span>, milis:<span class="number">1000</span>&#125;);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'segundo'</span>);</div></pre></td></tr></table></figure>
+<p>Irá retornar:</p>
+<blockquote>
+<p>segundo</p>
+<p>primeiro</p>
+</blockquote>
+<p>Até a versão ES5 do Javascript, caso fosse implementanda uma rotina onde é absolutamente necessário aguardar o retorno de uma chamada para executar a próxima, era necessário fazer o uso de callbacks:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">assincrono</span>(<span class="params">params, callback</span>) </span>&#123;</div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(params.txt);</div><div class="line">    callback();</div><div class="line">  &#125;, params.milis);</div><div class="line">&#125;</div><div class="line"></div><div class="line">assincrono(&#123;txt:<span class="string">'primeiro'</span>, milis:<span class="number">1000</span>&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'segundo'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Nesse caso o retorno seria o esperado:</p>
+<blockquote>
+<p>primeiro</p>
+<p>segundo</p>
+</blockquote>
+<p>Entretando, dependendo da complexidade da rotina, pode ser necessário aguardar mais de uma vez:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">umaFuncaoAssincrona(params, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  eOutra(params, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    eMaisOutra(params, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      eAssimPorDiante(params, <span class="function"><span class="keyword">function</span>(<span class="params">resultadoFinal</span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(resultadoFinal);</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Não há necessariamente algo errado com essa implementação, porém a legibilidade do código torna-se quase um trabalho árduo quando a lógica de cada chamada começa a aumentar em lnhas de código. Com isso em mente, na versão ES6 do Javascript foram instroduzidas as promises.</p>
+<p>Basicamente, uma promise é uma função que retorna um valor “provisório” até que o valor real seja retornado pela rotina, por exemplo:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">assincrono</span>(<span class="params">params</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(params.txt);</div><div class="line">      resolve();</div><div class="line">    &#125;, params.milis);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> r1 = assincrono(&#123;txt: <span class="string">'primeiro'</span>, milis:<span class="number">1000</span>&#125;);</div><div class="line"><span class="keyword">var</span> r2 = r1.then(assincrono.bind(<span class="literal">null</span>, &#123;txt: <span class="string">'segundo'</span>, milis: <span class="number">1200</span>&#125;));</div><div class="line"><span class="keyword">var</span> r3 = r2.then(assincrono.bind(<span class="literal">null</span>, &#123;txt: <span class="string">'terceiro'</span>, milis: <span class="number">400</span>&#125;));</div></pre></td></tr></table></figure>
+<p>Nesse caso o resultado segue exatamente a ordem especificada:</p>
+<blockquote>
+<p>primeiro</p>
+<p>segundo</p>
+<p>terceiro</p>
+</blockquote>
+<p>O que deve ser entendido nesse caso é que uma promisse possui um método <code>then()</code> que é chamado no momento em que a promise tem seu valor resolvido. O <code>then()</code> recebe por parâmetro quaisquer valores passados como parâmetro na função <code>resolve()</code> da promise. Uma vez que o <code>then()</code> retorna uma nova promise, podemos facilmente aninhar nossas chamadas. No exemplo acima podemos observar:</p>
+<ul>
+<li>Temos a variavel <code>r1</code> contendo a promise retornada pela função <code>assincrono</code>.</li>
+<li>Em seguida, usamos o método <code>bind()</code> para retornar uma nova variante da função <code>assincrono</code> (mais sobre isso adiante) e a colocamos como chamada para o <code>then</code> da promise <code>r1</code>. Essa nova promise gerada pelo <code>then</code> é armazenada na variável <code>r2</code></li>
+<li>Para a variável <code>r3</code> basicamente repetimos o mesmo processo acima</li>
+</ul>
+<p>A partir do ES5, o Javascript adicionou o método <code>bind</code> ao protótipo das funções. O que ele faz é basicamente sobrescrever a referência do <code>this</code> dentro do contexto da função, passando-o por parâmetro (o primeiro). Uma coisa importante sobre o <code>bind</code> é que ele retorna uma nova função, mas não a executa. Por exemplo:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// uma "classe" simples para representar um botão</span></div><div class="line"><span class="keyword">var</span> Botao = <span class="function"><span class="keyword">function</span>(<span class="params">texto</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.texto = texto;</div><div class="line">&#125;</div><div class="line"><span class="comment">// adicionamos o metodo clicar ao botao, fazendo referencia ao atributo texto da instancia</span></div><div class="line">Botao.prototype.clicar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.texto + <span class="string">' foi clicado'</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// criamos uma nova instancia do botao</span></div><div class="line"><span class="keyword">var</span> botaoOk = <span class="keyword">new</span> Botao(<span class="string">'OK'</span>);</div><div class="line"><span class="comment">// chamamos diretamente o método</span></div><div class="line">botaoOk.clicar();</div><div class="line"><span class="comment">// funcao com callback simples</span></div><div class="line"><span class="keyword">var</span> executar = <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</div><div class="line">  callback();</div><div class="line">&#125;;</div><div class="line"><span class="comment">// dizemos que o callback é o metodo clicar</span></div><div class="line">executar(botaoOk.clicar);</div></pre></td></tr></table></figure>
+<p>O resultado é:</p>
+<blockquote>
+<p>OK foi clicado</p>
+<p>undefined foi clicado</p>
+</blockquote>
+<p>Como o método <code>clicar()</code> está dentro de outro contexto, o valor do <code>this</code> na classe passa a ser diferente do original. Para evitar esse problema, pode-se simplesmente usar o bind:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">executar(botaoOk.clicar.bind(botaoOk));</div></pre></td></tr></table></figure>
+<p>Como falado, o primeiro parâmetro d <code>bind()</code> sempre é o novo valor do <code>this</code>. Porém, parâmetros adicionais também podem ser passados. No nosso caso, o <code>bind</code> necessitava de parâmetros pré-definidos, porém não deveria ser executado pois era necessário que fosse passado como parâmetro para o <code>then</code>.</p>
+<p>Portanto, para que a função fosse executada com os parâmetros corretos, porém só fosse executada após o <code>then</code> da promise anterior, usamos o <code>bind</code> para gerar uma nova função a ser passada por referência. Com isso, chegamos em nossa primeira solução para escapar do callback hell.</p>
+<p>Uma segunda característica interessante do ES6 são os generators. Eles basicamente atuam como interruptores, onde nós decidimos quando a execução deve pausar e quando continuar. Eis um exemplo:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">assincrono</span>(<span class="params">params</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      resolve(params.txt);</div><div class="line">      gen.next(params.txt);</div><div class="line">    &#125;, params.milis);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">sequencia</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> p1 = <span class="keyword">yield</span> assincrono(&#123;txt:<span class="string">'primeiro '</span>,milis:<span class="number">1500</span>&#125;);</div><div class="line">  <span class="keyword">var</span> p2 = <span class="keyword">yield</span> assincrono(&#123;txt:<span class="string">'segundo '</span>,milis:<span class="number">1200</span>&#125;);</div><div class="line">  <span class="keyword">var</span> p3 = <span class="keyword">yield</span> assincrono(&#123;txt:<span class="string">'terceiro'</span>,milis:<span class="number">1000</span>&#125;);</div><div class="line">  <span class="keyword">var</span> p4 = <span class="keyword">yield</span> assincrono(&#123;txt:<span class="string">'quarto'</span>,milis:<span class="number">1100</span>&#125;);</div><div class="line">  <span class="built_in">console</span>.log(p1,p2,p3,p4);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> gen = sequencia();</div><div class="line">gen.next();</div></pre></td></tr></table></figure>
+<p>Segue a explicação:</p>
+<ul>
+<li>Nossa função <code>assincrono()</code> continua igual, exceto que agora ela possui uma chamada para o método <code>next()</code> do generator.</li>
+<li>O generator é caracterizado pelo asterisco após a palavra <code>function</code>.</li>
+<li>O comando <code>yield</code> pausa a execução até que o método <code>next()</code> seja chamado.</li>
+<li>é necessário instanciar nosso generator (especialmente porque ele é referenciado na funçao assíncrona) e dar o primeiro <code>next()</code> para iniciá-lo.</li>
+</ul>
+<p>Como estamos sempre chamando o <code>next()</code> após a conclusão da chamda assíncrona, o resultado final fica:</p>
+<blockquote>
+<p>primeiro</p>
+<p>segundo</p>
+<p>terceiro</p>
+<p>quarto</p>
+</blockquote>
+
+                    
+                        
+                    
+                    
+                        <p>
+                            <a href="/24/01/2017/Evitando-o-callback-hell/#post-footer" class="postShorten-excerpt_link link">
+                                Comentar e compartilhar
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title" itemprop="headline">
+                    
                         <a class="link-unstyled" href="/19/07/2016/Dica-util-do-dia-Controle-no-ngRepeat/">
                             Dica útil do dia - Controle no ngRepeat
                         </a>
@@ -434,7 +533,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2016 Brutto-AVT. All Rights Reserved.
+        Copyrights &copy; 2017 Brutto-AVT. All Rights Reserved.
     </span>
 </footer>
 
